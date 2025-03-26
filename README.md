@@ -1,1 +1,1 @@
-# Tale of the Ripper treasure
+# Tale of the Ripper Treasure
