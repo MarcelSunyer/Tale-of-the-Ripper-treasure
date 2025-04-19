@@ -90,7 +90,11 @@ public class WaterFloat : MonoBehaviour
                 transform.Translate(Vector3.up * waterLineDelta * 0.9f);
             }
         }
-        rigidbody.AddForce(gravity * Mathf.Clamp(Mathf.Abs(waterLine - center.y), 0, 1));
+        if (waterLine > center.y)
+        {
+            // Modificar esta línea para reducir la fuerza de gravedad
+            rigidbody.AddForce(gravity * Mathf.Clamp(Mathf.Abs(waterLine - center.y), 0, 0.5f));
+        }
 
         //rotation
         if (pointUnderWater)
