@@ -5,53 +5,44 @@ using UnityEngine;
 public class CameraTransition : MonoBehaviour
 {
     [Header("Configuración de Cámaras")]
-    public Camera camera1;
-    public Camera camera2;
+    public Camera playerCamera;    // Cámara del jugador
+    public Camera shipCamera;      // Cámara del barco
     public KeyCode transitionKey = KeyCode.Space;
 
     [Header("Efecto de Fundido")]
     public float fadeDuration = 0.1f;
+    public CanvasGroup fadeCanvas; // Añadir un CanvasGroup para el efecto de fade
 
-    private bool usingCamera1 = true;
     private bool isTransitioning = false;
 
     void Start()
     {
-        // Configuración inicial
-        camera1.enabled = true;
-        camera2.enabled = false;
+        // Configuración inicial explícita
+        playerCamera.enabled = true;
+        shipCamera.enabled = false;
+
+        // Inicializar fade (si existe)
+        if (fadeCanvas != null)
+            fadeCanvas.alpha = 0;
     }
 
     public void TransitionCameras()
     {
-        
+        if (!isTransitioning)
             StartCoroutine(TransitionEffect());
-        
     }
 
     IEnumerator TransitionEffect()
     {
         isTransitioning = true;
 
-        // Fade a negro
-        yield return StartCoroutine(FadeScreen(0, 1));
+        // 1. Fade a negro
+        if (fadeCanvas != null)
+            yield return StartCoroutine(FadeScreen(0, 1));
 
-        // Cambiar cámara
-        if (usingCamera1)
-        {
-            camera1.enabled = false;
-            camera2.enabled = true;
-        }
-        else
-        {
-            camera2.enabled = false;
-            camera1.enabled = true;
-        }
-
-        usingCamera1 = !usingCamera1;
-
-        // Fade a transparente
-        yield return StartCoroutine(FadeScreen(1, 0));
+        // 2. Cambiar cámaras
+        playerCamera.enabled = !playerCamera.enabled;
+        shipCamera.enabled = !shipCamera.enabled;
 
         isTransitioning = false;
     }
@@ -62,10 +53,11 @@ public class CameraTransition : MonoBehaviour
 
         while (elapsedTime < fadeDuration)
         {
-            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+            fadeCanvas.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
+        fadeCanvas.alpha = endAlpha; // Asegurar valor final
     }
 }
+

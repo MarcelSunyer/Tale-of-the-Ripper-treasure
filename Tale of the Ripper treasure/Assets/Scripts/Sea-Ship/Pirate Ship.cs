@@ -1,5 +1,7 @@
 using Ditzelgames;
 using StarterAssets;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PirateShip : MonoBehaviour
@@ -13,7 +15,8 @@ public class PirateShip : MonoBehaviour
     public float power = 5f;
     public float maxSpeed = 10f;
     [SerializeField] private float rotationDrag = 1.2f;
-    [Range(0, 1)][SerializeField] private float steeringSensitivity = 0.01f;
+    [Range(0, 100)][SerializeField] private float steeringSensitivity = 1f;
+    [Range(0, 100)][SerializeField] public float rotationSpeed = 2.5f;
 
     [Header("References")]
 
@@ -27,7 +30,15 @@ public class PirateShip : MonoBehaviour
     private bool canMove = false;
     private Vector3 originalPlayerPosition;
 
+    private Collider shipTriggerCollider;
     public CameraTransition cameraTransition;
+
+    // Nuevas variables para almacenar el estado original
+    private float originalAnimSpeed;
+    private float originalMotionSpeed;
+    private bool originalFreeFall;
+
+    public Collider publicCollider;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -35,10 +46,20 @@ public class PirateShip : MonoBehaviour
         startRotation = motor.localRotation;
         particleSystem = GetComponentInChildren<ParticleSystem>();
 
+        // Get the ship's trigger collider
+        shipTriggerCollider = GetComponent<Collider>();
+
         if (capitan != null)
         {
             originalMoveSpeed = capitan.MoveSpeed;
-            originalPlayerPosition = capitan.transform.position;
+            // Capturar parámetros iniciales del Animator
+            Animator captainAnimator = capitan.GetComponent<Animator>();
+            if (captainAnimator != null)
+            {
+                originalAnimSpeed = captainAnimator.GetFloat("Speed");
+                originalMotionSpeed = captainAnimator.GetFloat("MotionSpeed");
+                originalFreeFall = captainAnimator.GetBool("FreeFall");
+            }
         }
     }
 
@@ -66,18 +87,18 @@ public class PirateShip : MonoBehaviour
         float steerInput = 0f;
 
         if (Input.GetKey(KeyCode.A))
-            steerInput = Mathf.Lerp(steerInput, -1f, steeringSensitivity);
+            steerInput = Mathf.Lerp(steerInput, -4f, steeringSensitivity* 100);
         else if (Input.GetKey(KeyCode.D))
-            steerInput = Mathf.Lerp(steerInput, 1f, steeringSensitivity);
+            steerInput = Mathf.Lerp(steerInput, 4f, steeringSensitivity * 100);
         else
-            steerInput = Mathf.Lerp(steerInput, 0f, steeringSensitivity * 2);
+            steerInput = Mathf.Lerp(steerInput, 0f, steeringSensitivity * 100);
 
         return Mathf.Clamp(steerInput, -1f, 1f);
     }
 
     private void ApplyShipRotation(float steerInput)
     {
-        float steeringForce = steerInput * steerPower * Time.fixedDeltaTime;
+        float steeringForce = steerInput * rotationSpeed * steerPower * Time.fixedDeltaTime;
         rigidbody.AddTorque(transform.up * steeringForce, ForceMode.Force);
         rigidbody.angularVelocity = Vector3.ClampMagnitude(rigidbody.angularVelocity, maxAngularSpeed);
     }
@@ -146,17 +167,40 @@ public class PirateShip : MonoBehaviour
 
     private void HandleShipExit()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape)) // Solo si el jugador está en el barco
         {
             canMove = false;
             rigidbody.velocity = Vector3.zero;
 
-            // Restore player control
+            // Restaurar control del jugador
             capitan.MoveSpeed = originalMoveSpeed;
             capitan.GetComponent<CharacterController>().enabled = true;
             capitan.transform.SetParent(null);
 
+            // Cambiar cámara al jugador
+            cameraTransition.TransitionCameras(); // <-- Aquí está el cambio clave
+
+            // Reactivar collider del barco
+            shipTriggerCollider.enabled = true;
+
+            // Forzar animación idle
+            Animator captainAnimator = capitan.GetComponent<Animator>();
+            if (captainAnimator != null)
+            {
+                captainAnimator.SetFloat("Speed", 0f);
+            }
+            if (publicCollider != null)
+            {
+                publicCollider.enabled = false;
+                StartCoroutine(ReactivateColliderAfterDelay(4f));
+            }
         }
+    }
+
+    private IEnumerator ReactivateColliderAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        publicCollider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -170,6 +214,9 @@ public class PirateShip : MonoBehaviour
     private void ActivateShipControl()
     {
         cameraTransition.TransitionCameras();
+        // Disable ship trigger collider
+        shipTriggerCollider.enabled = false;
+
         // Reset physics
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
@@ -181,16 +228,22 @@ public class PirateShip : MonoBehaviour
         originalPlayerPosition = capitan.transform.localPosition;
 
         // Enable ship control
-        //stayCapitan.SetActive(true);
         canMove = true;
+        Animator captainAnimator = capitan.GetComponent<Animator>();
+        if (captainAnimator != null)
+        {
+            captainAnimator.Play("Idle", 0); 
+            captainAnimator.SetFloat("Speed", 0f);
+            captainAnimator.SetFloat("MotionSpeed", 0f);
+        }
     }
+
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") && !canMove)
         {
-            
-
+           
         }
     }
 }

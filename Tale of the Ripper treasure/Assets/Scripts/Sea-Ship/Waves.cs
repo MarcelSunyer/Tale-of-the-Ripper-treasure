@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Waves : MonoBehaviour
-{
-    //Public Properties
+{ // Public Properties
     public int dimension = 10;
     public float UVScale = 2f;
     public Octave[] octaves;
+    public bool isCopy = false; // Flag to prevent infinite copy loops
 
-    //Mesh
+    // Mesh
     protected MeshFilter meshFilter;
     protected Mesh mesh;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Mesh Setup
+        // Mesh Setup
         mesh = new Mesh();
         mesh.name = gameObject.name;
 
@@ -30,6 +29,7 @@ public class Waves : MonoBehaviour
         meshFilter = gameObject.AddComponent<MeshFilter>();
         meshFilter.mesh = mesh;
     }
+  
 
     public float GetHeight(Vector3 position)
     {
@@ -134,21 +134,37 @@ public class Waves : MonoBehaviour
     void Update()
     {
         var verts = mesh.vertices;
+        float sizeX = dimension * transform.lossyScale.x;
+        float sizeZ = dimension * transform.lossyScale.z;
+
         for (int x = 0; x <= dimension; x++)
         {
             for (int z = 0; z <= dimension; z++)
             {
-                var y = 0f;
+                Vector3 localPos = new Vector3(x, 0, z);
+                Vector3 worldPos = transform.TransformPoint(localPos);
+
+                // Tile world positions to create seamless noise
+                float tiledWorldX = Mathf.Repeat(worldPos.x, sizeX);
+                float tiledWorldZ = Mathf.Repeat(worldPos.z, sizeZ);
+
+                float y = 0f;
                 for (int o = 0; o < octaves.Length; o++)
                 {
                     if (octaves[o].alternate)
                     {
-                        var perl = Mathf.PerlinNoise((x * octaves[o].scale.x) / dimension, (z * octaves[o].scale.y) / dimension) * Mathf.PI * 2f;
+                        float perl = Mathf.PerlinNoise(
+                            (tiledWorldX * octaves[o].scale.x) / sizeX,
+                            (tiledWorldZ * octaves[o].scale.y) / sizeZ
+                        ) * Mathf.PI * 2f;
                         y += Mathf.Cos(perl + octaves[o].speed.magnitude * Time.time) * octaves[o].height;
                     }
                     else
                     {
-                        var perl = Mathf.PerlinNoise((x * octaves[o].scale.x + Time.time * octaves[o].speed.x) / dimension, (z * octaves[o].scale.y + Time.time * octaves[o].speed.y) / dimension) - 0.5f;
+                        float perl = Mathf.PerlinNoise(
+                            (tiledWorldX * octaves[o].scale.x + Time.time * octaves[o].speed.x) / sizeX,
+                            (tiledWorldZ * octaves[o].scale.y + Time.time * octaves[o].speed.y) / sizeZ
+                        ) - 0.5f;
                         y += perl * octaves[o].height;
                     }
                 }
@@ -156,6 +172,7 @@ public class Waves : MonoBehaviour
                 verts[index(x, z)] = new Vector3(x, y, z);
             }
         }
+
         mesh.vertices = verts;
         mesh.RecalculateNormals();
     }
