@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - NPC
+  - "Tim\xF3n"
   layers:
   - Default
   - TransparentFX

@@ -30,7 +30,7 @@ public class PirateShip : MonoBehaviour
     private bool canMove = false;
     private Vector3 originalPlayerPosition;
 
-    private Collider shipTriggerCollider;
+    public Collider shipTriggerCollider;
     public CameraTransition cameraTransition;
 
     // Nuevas variables para almacenar el estado original
@@ -45,9 +45,6 @@ public class PirateShip : MonoBehaviour
         rigidbody.angularDrag = rotationDrag;
         startRotation = motor.localRotation;
         particleSystem = GetComponentInChildren<ParticleSystem>();
-
-        // Get the ship's trigger collider
-        shipTriggerCollider = GetComponent<Collider>();
 
         if (capitan != null)
         {
@@ -65,6 +62,11 @@ public class PirateShip : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (capitan.colliderTimon == true)
+        {
+            ActivateShipControl();
+            capitan.colliderTimon = false;
+        }
         if (canMove)
         {
             HandleShipControl();
@@ -203,13 +205,7 @@ public class PirateShip : MonoBehaviour
         publicCollider.enabled = true;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            ActivateShipControl();
-        }
-    }
+  
 
     private void ActivateShipControl()
     {
