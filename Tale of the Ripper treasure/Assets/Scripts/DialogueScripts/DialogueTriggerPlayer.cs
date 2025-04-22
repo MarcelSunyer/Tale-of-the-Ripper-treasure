@@ -19,7 +19,7 @@ public class DialogueTriggerPlayer : MonoBehaviour
     {
         if (playerInRange)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 Debug.Log(inkJSON.text);
             }
