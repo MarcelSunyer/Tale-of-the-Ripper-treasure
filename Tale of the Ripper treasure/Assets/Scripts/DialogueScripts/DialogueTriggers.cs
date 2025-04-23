@@ -20,7 +20,7 @@ public class DialogueTriggers : MonoBehaviour
     }
     private void Update()
     {
-        if (playerInRange /*&& !DialogManager.GetInstance().dialogueIsPlaying*/)
+        if (playerInRange && !DialogManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
@@ -46,7 +46,7 @@ public class DialogueTriggers : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            playerInRange = true;
+            playerInRange = false;
         }
     }
 }
