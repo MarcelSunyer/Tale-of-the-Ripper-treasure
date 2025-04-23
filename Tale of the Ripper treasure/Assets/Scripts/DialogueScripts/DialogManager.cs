@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using StarterAssets;
+using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class DialogManager : MonoBehaviour
 {
@@ -16,6 +19,8 @@ public class DialogManager : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
+
+    public ThirdPersonController capitan;
 
     public bool dialogueIsPlaying { get; private set; }
 
@@ -53,7 +58,12 @@ public class DialogManager : MonoBehaviour
     {
         if (!dialogueIsPlaying)
         {
+            capitan.MoveSpeed = 2;
             return;
+        }
+        if (dialogueIsPlaying)
+        {
+            capitan.MoveSpeed = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
