@@ -1,0 +1,1 @@
+VAR Tomasso_Loyalty = 50
