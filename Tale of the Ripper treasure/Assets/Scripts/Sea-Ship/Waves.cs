@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +14,8 @@ public class Waves : MonoBehaviour
     protected MeshFilter meshFilter;
     protected Mesh mesh;
 
+    public int wavesArround;
+
     void Start()
     {
         // Mesh Setup
@@ -28,22 +30,42 @@ public class Waves : MonoBehaviour
 
         meshFilter = gameObject.AddComponent<MeshFilter>();
         meshFilter.mesh = mesh;
-    }
-  
 
+        // Only create surrounding waves if this is the original
+        if (!isCopy)
+        {
+            CreateTiledWaves(wavesArround); // Creates 3x3 grid (1 tile per side)
+        }
+    }
+
+    public void CreateTiledWaves(int countPerSide)
+    {
+        float spacing = dimension * transform.localScale.x;
+
+        for (int x = -countPerSide; x <= countPerSide; x++)
+        {
+            for (int z = -countPerSide; z <= countPerSide; z++)
+            {
+                // Skip the center tile
+                if (x == 0 && z == 0) continue;
+
+                Vector3 offset = new Vector3(x * spacing, 0, z * spacing);
+                GameObject copy = Instantiate(gameObject, transform.position + offset, transform.rotation);
+                Waves wave = copy.GetComponent<Waves>();
+                wave.isCopy = true;
+            }
+        }
+    }
     public float GetHeight(Vector3 position)
     {
-        //scale factor and position in local space
         var scale = new Vector3(1 / transform.lossyScale.x, 0, 1 / transform.lossyScale.z);
         var localPos = Vector3.Scale((position - transform.position), scale);
 
-        //get edge points
         var p1 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Floor(localPos.z));
         var p2 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Ceil(localPos.z));
         var p3 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Floor(localPos.z));
         var p4 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Ceil(localPos.z));
 
-        //clamp if the position is outside the plane
         p1.x = Mathf.Clamp(p1.x, 0, dimension);
         p1.z = Mathf.Clamp(p1.z, 0, dimension);
         p2.x = Mathf.Clamp(p2.x, 0, dimension);
@@ -53,28 +75,17 @@ public class Waves : MonoBehaviour
         p4.x = Mathf.Clamp(p4.x, 0, dimension);
         p4.z = Mathf.Clamp(p4.z, 0, dimension);
 
-        //get the max distance to one of the edges and take that to compute max - dist
         var max = Mathf.Max(Vector3.Distance(p1, localPos), Vector3.Distance(p2, localPos), Vector3.Distance(p3, localPos), Vector3.Distance(p4, localPos) + Mathf.Epsilon);
-        var dist = (max - Vector3.Distance(p1, localPos))
-                 + (max - Vector3.Distance(p2, localPos))
-                 + (max - Vector3.Distance(p3, localPos))
-                 + (max - Vector3.Distance(p4, localPos) + Mathf.Epsilon);
-        //weighted sum
-        var height = mesh.vertices[index(p1.x, p1.z)].y * (max - Vector3.Distance(p1, localPos))
-                   + mesh.vertices[index(p2.x, p2.z)].y * (max - Vector3.Distance(p2, localPos))
-                   + mesh.vertices[index(p3.x, p3.z)].y * (max - Vector3.Distance(p3, localPos))
-                   + mesh.vertices[index(p4.x, p4.z)].y * (max - Vector3.Distance(p4, localPos));
+        var dist = (max - Vector3.Distance(p1, localPos)) + (max - Vector3.Distance(p2, localPos)) + (max - Vector3.Distance(p3, localPos)) + (max - Vector3.Distance(p4, localPos) + Mathf.Epsilon);
+        var height = mesh.vertices[index(p1.x, p1.z)].y * (max - Vector3.Distance(p1, localPos)) + mesh.vertices[index(p2.x, p2.z)].y * (max - Vector3.Distance(p2, localPos)) + mesh.vertices[index(p3.x, p3.z)].y * (max - Vector3.Distance(p3, localPos)) + mesh.vertices[index(p4.x, p4.z)].y * (max - Vector3.Distance(p4, localPos));
 
-        //scale
         return height * transform.lossyScale.y / dist;
-
     }
 
     private Vector3[] GenerateVerts()
     {
         var verts = new Vector3[(dimension + 1) * (dimension + 1)];
 
-        //equaly distributed verts
         for (int x = 0; x <= dimension; x++)
             for (int z = 0; z <= dimension; z++)
                 verts[index(x, z)] = new Vector3(x, 0, z);
@@ -86,7 +97,6 @@ public class Waves : MonoBehaviour
     {
         var tries = new int[mesh.vertices.Length * 6];
 
-        //two triangles are one tile
         for (int x = 0; x < dimension; x++)
         {
             for (int z = 0; z < dimension; z++)
@@ -107,7 +117,6 @@ public class Waves : MonoBehaviour
     {
         var uvs = new Vector2[mesh.vertices.Length];
 
-        //always set one uv over n tiles than flip the uv and set it again
         for (int x = 0; x <= dimension; x++)
         {
             for (int z = 0; z <= dimension; z++)
@@ -129,8 +138,6 @@ public class Waves : MonoBehaviour
     {
         return index((int)x, (int)z);
     }
-
-    // Update is called once per frame
     void Update()
     {
         var verts = mesh.vertices;
@@ -144,7 +151,6 @@ public class Waves : MonoBehaviour
                 Vector3 localPos = new Vector3(x, 0, z);
                 Vector3 worldPos = transform.TransformPoint(localPos);
 
-                // Tile world positions to create seamless noise
                 float tiledWorldX = Mathf.Repeat(worldPos.x, sizeX);
                 float tiledWorldZ = Mathf.Repeat(worldPos.z, sizeZ);
 
