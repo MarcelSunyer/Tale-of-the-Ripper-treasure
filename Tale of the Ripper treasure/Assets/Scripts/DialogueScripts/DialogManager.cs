@@ -5,11 +5,12 @@ using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using StarterAssets;
-using Unity.VisualScripting;
-using UnityEngine.InputSystem;
 
 public class DialogManager : MonoBehaviour
 {
+    [Header("Load Globals JSON")]
+    [SerializeField] private TextAsset loadGlobalsJSON;
+
     [Header("DialogueUI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -26,6 +27,8 @@ public class DialogManager : MonoBehaviour
 
     private static DialogManager instance;
 
+    private DialogueVariables dialogueVariables;
+
     private void Awake()
     {
         if (instance == null)
@@ -33,6 +36,7 @@ public class DialogManager : MonoBehaviour
             Debug.LogWarning("Found more than one Dialogue Manager");
         }
         instance = this;
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
 
     public static DialogManager GetInstance()
@@ -79,12 +83,16 @@ public class DialogManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
+        dialogueVariables.StartListening(currentStory);
+
         ContinueStory();
 
     }
     private IEnumerator ExitDialogueMode()
     {
         yield return new WaitForSeconds(0.2f);
+
+        dialogueVariables.StopListening(currentStory);
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -137,5 +145,16 @@ public class DialogManager : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
+    }
+
+    public Ink.Runtime.Object GetVariableState(string variableName)
+    {
+        Ink.Runtime.Object variableValue = null;
+        dialogueVariables.variables.TryGetValue(variableName, out variableValue);
+        if(variableValue == null)
+        {
+
+        }
+        return variableValue;
     }
 }
