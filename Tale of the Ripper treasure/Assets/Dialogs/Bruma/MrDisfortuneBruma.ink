@@ -1,3 +1,5 @@
+INCLUDE ../Globals.ink
+
 -> main
 === main ===
 
@@ -19,4 +21,5 @@ Pico Pata Palo (mente): (Pero qué le pasa a este... Ah claro, los espejismos.)
     Tomasso: Sir Disfortune, ¿de verdad va a dejarse engañar por esos barquitos falsos? Mire nuestra increible mole flotante con la que conquistaremos estos mares. Va, si nos ayuda de regalo le haré un guiso especial.
     
     Mr.Disfortune: ¿Qué? ¡Ah! ¡Tienes toda la razón! Vaya preparando el guiso mientras me dirijo al timón, mi amigo rechoncho.
+    ~MrDisfortune_Loyalty += 10
     ->END
