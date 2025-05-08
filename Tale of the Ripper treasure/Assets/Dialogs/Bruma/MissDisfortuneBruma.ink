@@ -1,3 +1,5 @@
+INCLUDE ../Globals.ink
+
 -> main
 === main ===
 
