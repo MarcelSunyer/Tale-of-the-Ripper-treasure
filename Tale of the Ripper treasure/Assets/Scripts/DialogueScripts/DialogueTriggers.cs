@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Runtime;
 using UnityEngine;
 
 public class DialogueTriggers : MonoBehaviour
@@ -8,7 +9,9 @@ public class DialogueTriggers : MonoBehaviour
     [SerializeField] private GameObject visualCue;
 
     [Header("Ink JSON")]
-    [SerializeField] private TextAsset inkJSON;
+    [SerializeField] private TextAsset inkJSONLow;
+    [SerializeField] private TextAsset inkJSONNeutral;
+    [SerializeField] private TextAsset inkJSONHigh;
 
     private bool playerInRange;
 
@@ -25,7 +28,22 @@ public class DialogueTriggers : MonoBehaviour
             visualCue.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                DialogManager.GetInstance().EnterDialogueMode(inkJSON);
+                int loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
+
+                if(loyaltyT < 30)
+                {
+                    DialogManager.GetInstance().EnterDialogueMode(inkJSONLow);
+                }
+                else if (loyaltyT >= 30 && loyaltyT< 75)
+                {
+                    DialogManager.GetInstance().EnterDialogueMode(inkJSONNeutral);
+                }
+                else
+                {
+                    DialogManager.GetInstance().EnterDialogueMode(inkJSONHigh);
+                }
+                
+                
             }
         }
         else

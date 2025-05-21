@@ -2392,6 +2392,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONLow
+      value: 
+      objectReference: {fileID: 4900000, guid: d24556d56a2091642b900f2eb3a2a47e, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONHigh
+      value: 
+      objectReference: {fileID: 4900000, guid: 5b35abdc640eacf4487de64811b12386, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONNeutral
+      value: 
+      objectReference: {fileID: 4900000, guid: 22a652dac4ff8c1498093da968409e54, type: 3}
     - target: {fileID: 2995922805030377342, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: m_Name
       value: NPC

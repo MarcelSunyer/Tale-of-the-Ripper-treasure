@@ -17,9 +17,11 @@ public class DialogueLoyaltyText : MonoBehaviour
                 var tomasso = DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty");
                 LoyaltyText.text = "Lealtad Tomasso: " + tomasso.ToString();
                 break;
-            case "Miss":
+            case "miss":
                 var missDisfortune = DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty");
                 LoyaltyText.text = "Lealtad MissDisfortune: " + missDisfortune.ToString();
+                break;
+            default:
                 break;
         }
     }

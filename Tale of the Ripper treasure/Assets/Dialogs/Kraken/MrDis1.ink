@@ -1,5 +1,8 @@
+INCLUDE ../Globals.ink
+
 -> main
 === main ===
+
 
 Mr. Disfortune: ¡Capitán ha aparecido un Kraken!
 *[Si no me lo dices no lo veo]
