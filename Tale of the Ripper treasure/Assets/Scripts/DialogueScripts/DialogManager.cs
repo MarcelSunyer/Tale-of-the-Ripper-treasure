@@ -154,7 +154,7 @@ public class DialogManager : MonoBehaviour
         dialogueVariables.variables.TryGetValue(variableName, out variableValue);
         if(variableValue == null)
         {
-
+            Debug.LogWarning("A" + variableName);
         }
         return variableValue;
     }

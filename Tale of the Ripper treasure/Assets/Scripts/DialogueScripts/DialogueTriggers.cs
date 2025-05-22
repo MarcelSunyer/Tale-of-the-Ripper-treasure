@@ -13,6 +13,9 @@ public class DialogueTriggers : MonoBehaviour
     [SerializeField] private TextAsset inkJSONNeutral;
     [SerializeField] private TextAsset inkJSONHigh;
 
+    [Header("NPC Name")]
+    [SerializeField] private string npcName;
+
     private bool playerInRange;
 
     private void Awake()
@@ -25,12 +28,27 @@ public class DialogueTriggers : MonoBehaviour
     {
         if (playerInRange && !DialogManager.GetInstance().dialogueIsPlaying)
         {
+            int loyaltyT = 0;
             visualCue.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                int loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
+                switch (npcName) 
+                { 
+                    case "Tomasso":
+                        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
+                        break;
+                    
+                    case "Miss":
+                       loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
+                       break;
+                    
+                    case "Mr":
+                        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("MrDisfortune_Loyalty")).value;
+                        break;
+                }
 
-                if(loyaltyT < 30)
+
+                if (loyaltyT < 30)
                 {
                     DialogManager.GetInstance().EnterDialogueMode(inkJSONLow);
                 }
