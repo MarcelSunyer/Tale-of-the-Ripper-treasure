@@ -1,4 +1,4 @@
-INCLUDE ../Globals.ink
+INCLUDE ../Globals2.ink
 
 -> main
 === main ===
@@ -9,6 +9,7 @@ Miss Disfortune: Pues si, para empezar para eso nos hemos adentrado en esta sini
 *[Escapar con Miss]
     Gracias capitán, vayamos al timón, tú dirijes.
     ~MissDisfortune_Loyalty += 20
+    Lealtad de Miss= {MissDisfortune_Loyalty}
     ->END
 *[Buscar a los otros]
 ->END

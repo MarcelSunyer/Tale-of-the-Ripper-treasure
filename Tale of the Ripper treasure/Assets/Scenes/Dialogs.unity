@@ -2055,6 +2055,22 @@ PrefabInstance:
       propertyPath: inkJSON
       value: 
       objectReference: {fileID: 4900000, guid: 0e31e4c4064694f479c6a62c3c029ab0, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: npcName
+      value: Miss
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONLow
+      value: 
+      objectReference: {fileID: 4900000, guid: 78fff8df3e1b6bb4d9b52febf50b1fa3, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONHigh
+      value: 
+      objectReference: {fileID: 4900000, guid: 0c9f33e450ff4374d96812985bb8340d, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONNeutral
+      value: 
+      objectReference: {fileID: 4900000, guid: 8baff58ec9b0d9d458eb69b83a53b8ef, type: 3}
     - target: {fileID: 2995922805030377342, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: m_Name
       value: NPC (1)
@@ -2326,7 +2342,7 @@ PrefabInstance:
     - target: {fileID: 7944522101892062371, guid: 30c7a0c0c373b364c9ca74bf504801e4, type: 3}
       propertyPath: loadGlobalsJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 5e1eae2686b7c884b816cee834a10a39, type: 3}
+      objectReference: {fileID: 4900000, guid: 5cc573386f1f2da4c811c28aa84f1cde, type: 3}
     - target: {fileID: 7944522101892062371, guid: 30c7a0c0c373b364c9ca74bf504801e4, type: 3}
       propertyPath: choices.Array.data[0]
       value: 
@@ -2392,6 +2408,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: npcName
+      value: Tomasso
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONLow
+      value: 
+      objectReference: {fileID: 4900000, guid: d24556d56a2091642b900f2eb3a2a47e, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONHigh
+      value: 
+      objectReference: {fileID: 4900000, guid: 5b35abdc640eacf4487de64811b12386, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONNeutral
+      value: 
+      objectReference: {fileID: 4900000, guid: 22a652dac4ff8c1498093da968409e54, type: 3}
     - target: {fileID: 2995922805030377342, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: m_Name
       value: NPC

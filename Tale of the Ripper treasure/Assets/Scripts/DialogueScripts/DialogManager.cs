@@ -75,6 +75,7 @@ public class DialogManager : MonoBehaviour
 
             ContinueStory();
         }
+
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -149,11 +150,11 @@ public class DialogManager : MonoBehaviour
 
     public Ink.Runtime.Object GetVariableState(string variableName)
     {
-        Ink.Runtime.Object variableValue = null;
+        Ink.Runtime.Object variableValue;
         dialogueVariables.variables.TryGetValue(variableName, out variableValue);
         if(variableValue == null)
         {
-
+            Debug.LogWarning("A" + variableName);
         }
         return variableValue;
     }
