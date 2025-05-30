@@ -22,7 +22,7 @@ public class DialogueTriggers : MonoBehaviour
     {
         playerInRange = false;
         visualCue.SetActive(false);
-        
+
     }
     private void Update()
     {
@@ -36,14 +36,17 @@ public class DialogueTriggers : MonoBehaviour
                 { 
                     case "Tomasso":
                         loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
+                        DialogManager.GetInstance().loyaltyText.text = "Tomasso Loyalty ="+ loyaltyT;
                         break;
                     
                     case "Miss":
-                       loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
-                       break;
+                        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
+                        DialogManager.GetInstance().loyaltyText.text = "Miss Loyalty =" + loyaltyT;
+                        break;
                     
                     case "Mr":
                         loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("MrDisfortune_Loyalty")).value;
+                        DialogManager.GetInstance().loyaltyText.text = "Mr Loyalty =" + loyaltyT;
                         break;
                 }
 

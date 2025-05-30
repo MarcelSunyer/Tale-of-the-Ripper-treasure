@@ -44,18 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c420551816476eb4eb6d0e4122824849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalsInkFile:
-    inkAsset: {fileID: 102900000, guid: 7025f2c0bc8bdba4eb73f17281be1aa1, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 0}
-    unhandledCompileErrors: []
-    recursiveIncludeErrorPaths: []
-    errors: []
-    warnings: []
-    todos: []
-    masterInkAssets: []
-    localIncludePaths: []
-    includes: []
+  loadGlobalsJSON: {fileID: 4900000, guid: 5cc573386f1f2da4c811c28aa84f1cde, type: 3}
   dialoguePanel: {fileID: 0}
   dialogueText: {fileID: 0}
   choices:
@@ -63,3 +52,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   capitan: {fileID: 0}
+  loyaltyText: {fileID: 0}

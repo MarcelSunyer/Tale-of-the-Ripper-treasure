@@ -23,6 +23,8 @@ public class DialogManager : MonoBehaviour
 
     public ThirdPersonController capitan;
 
+    [SerializeField] public TextMeshProUGUI loyaltyText;
+
     public bool dialogueIsPlaying { get; private set; }
 
     private static DialogManager instance;
