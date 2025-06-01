@@ -33,29 +33,34 @@ public class DialogueTriggers : MonoBehaviour
         loyaltyMiss = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
         loyaltyMr = ((IntValue)DialogManager.GetInstance().GetVariableState("MrDisfortune_Loyalty")).value;
         int loyalty = 0;
-        switch (npcName)
+        if (playerInRange)
         {
-            case "Tomasso":
-                loyalty = loyaltyT;
-                DialogManager.GetInstance().loyaltyText.text = "Tomasso Loyalty =" + loyaltyT;
-                break;
+            switch (npcName)
+            {
+                case "Tomasso":
+                    loyalty = loyaltyT;
+                    DialogManager.GetInstance().loyaltyText.text = "Tomasso Loyalty =" + loyaltyT;
+                    break;
 
-            case "Miss":
-                loyalty = loyaltyMiss;
-                DialogManager.GetInstance().loyaltyText.text = "Miss Loyalty =" + loyaltyMiss;
-                break;
+                case "Miss":
+                    loyalty = loyaltyMiss;
+                    DialogManager.GetInstance().loyaltyText.text = "Miss Loyalty =" + loyaltyMiss;
+                    break;
 
-            case "Mr":
-                loyalty = loyaltyMr;
-                DialogManager.GetInstance().loyaltyText.text = "Mr Loyalty =" + loyaltyMr;
-                break;
+                case "Mr":
+                    loyalty = loyaltyMr;
+                    DialogManager.GetInstance().loyaltyText.text = "Mr Loyalty =" + loyaltyMr;
+                    break;
+            }
         }
 
         if (playerInRange && !DialogManager.GetInstance().dialogueIsPlaying)
         {
 
             visualCue.SetActive(true);
+
             
+
             if (Input.GetKeyDown(KeyCode.E))
             {
 

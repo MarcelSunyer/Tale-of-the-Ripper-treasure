@@ -1624,6 +1624,22 @@ PrefabInstance:
       propertyPath: inkJSON
       value: 
       objectReference: {fileID: 4900000, guid: 8baff58ec9b0d9d458eb69b83a53b8ef, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: npcName
+      value: Mr
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONLow
+      value: 
+      objectReference: {fileID: 4900000, guid: d36015d6fc91207499894e4989c027f6, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONHigh
+      value: 
+      objectReference: {fileID: 4900000, guid: cc99da2632ae63142a10e3fb18c71d3a, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONNeutral
+      value: 
+      objectReference: {fileID: 4900000, guid: 61450c49cb558c240b34c85f57a170f0, type: 3}
     - target: {fileID: 2772025976406362366, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1825,6 +1841,22 @@ PrefabInstance:
       propertyPath: inkJSON
       value: 
       objectReference: {fileID: 4900000, guid: 0e31e4c4064694f479c6a62c3c029ab0, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: npcName
+      value: Miss
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONLow
+      value: 
+      objectReference: {fileID: 4900000, guid: c91d496c572c47d409672a10e06fc18f, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONHigh
+      value: 
+      objectReference: {fileID: 4900000, guid: 8018d505caa1264498f6d03ca79fcbfd, type: 3}
+    - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
+      propertyPath: inkJSONNeutral
+      value: 
+      objectReference: {fileID: 4900000, guid: 5a9b50bfb7df7034cb9eeb0d6bc14d22, type: 3}
     - target: {fileID: 2995922805030377342, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: m_Name
       value: NPCMiss
