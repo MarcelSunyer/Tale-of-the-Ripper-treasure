@@ -17,6 +17,9 @@ public class DialogueTriggers : MonoBehaviour
     [SerializeField] private string npcName;
 
     private bool playerInRange;
+    private int loyaltyT;
+    private int loyaltyMiss;
+    private int loyaltyMr;
 
     private void Awake()
     {
@@ -26,36 +29,41 @@ public class DialogueTriggers : MonoBehaviour
     }
     private void Update()
     {
+        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
+        loyaltyMiss = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
+        loyaltyMr = ((IntValue)DialogManager.GetInstance().GetVariableState("MrDisfortune_Loyalty")).value;
+        int loyalty = 0;
+        switch (npcName)
+        {
+            case "Tomasso":
+                loyalty = loyaltyT;
+                DialogManager.GetInstance().loyaltyText.text = "Tomasso Loyalty =" + loyaltyT;
+                break;
+
+            case "Miss":
+                loyalty = loyaltyMiss;
+                DialogManager.GetInstance().loyaltyText.text = "Miss Loyalty =" + loyaltyMiss;
+                break;
+
+            case "Mr":
+                loyalty = loyaltyMr;
+                DialogManager.GetInstance().loyaltyText.text = "Mr Loyalty =" + loyaltyMr;
+                break;
+        }
+
         if (playerInRange && !DialogManager.GetInstance().dialogueIsPlaying)
         {
-            int loyaltyT = 0;
+
             visualCue.SetActive(true);
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
-                switch (npcName) 
-                { 
-                    case "Tomasso":
-                        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
-                        DialogManager.GetInstance().loyaltyText.text = "Tomasso Loyalty ="+ loyaltyT;
-                        break;
-                    
-                    case "Miss":
-                        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
-                        DialogManager.GetInstance().loyaltyText.text = "Miss Loyalty =" + loyaltyT;
-                        break;
-                    
-                    case "Mr":
-                        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("MrDisfortune_Loyalty")).value;
-                        DialogManager.GetInstance().loyaltyText.text = "Mr Loyalty =" + loyaltyT;
-                        break;
-                }
 
-
-                if (loyaltyT < 30)
+                if (loyalty < 30)
                 {
                     DialogManager.GetInstance().EnterDialogueMode(inkJSONLow);
                 }
-                else if (loyaltyT >= 30 && loyaltyT< 75)
+                else if (loyalty >= 30 && loyalty < 75)
                 {
                     DialogManager.GetInstance().EnterDialogueMode(inkJSONNeutral);
                 }
@@ -63,8 +71,8 @@ public class DialogueTriggers : MonoBehaviour
                 {
                     DialogManager.GetInstance().EnterDialogueMode(inkJSONHigh);
                 }
-                
-                
+
+
             }
         }
         else
