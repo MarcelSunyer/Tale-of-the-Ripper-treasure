@@ -649,6 +649,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 10, z: 30}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &150985440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5295525979966291191, guid: c1e231173a858614085ca7e0602860eb, type: 3}
+  m_PrefabInstance: {fileID: 194972939}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &194972939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3525,8 +3536,8 @@ MonoBehaviour:
   rotationDrag: 0.95
   steeringSensitivity: 58.6
   rotationSpeed: 39.3
-  capitan: {fileID: 0}
-  playerSeatPosition: {fileID: 0}
+  capitan: {fileID: 150985440}
+  playerSeatPosition: {fileID: 405302775}
   shipTriggerCollider: {fileID: 87900533}
   cameraTransition: {fileID: 1907216963}
   publicCollider: {fileID: 87900533}
