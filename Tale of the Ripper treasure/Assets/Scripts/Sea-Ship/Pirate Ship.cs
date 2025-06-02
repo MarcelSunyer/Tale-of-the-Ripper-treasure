@@ -224,8 +224,10 @@ public class PirateShip : MonoBehaviour
         if (publicCollider != null)
         {
             publicCollider.enabled = false;
-            StartCoroutine(ReactivateColliderAfterDelay(4f));
+            //StartCoroutine(ReactivateColliderAfterDelay(4f));
         }
+
+        // Cuando se hagan los dialogos necesarios volver a activar "publicCollider" para poder conducir el barco
     }
 
     private IEnumerator ReactivateColliderAfterDelay(float delay)
