@@ -31,8 +31,11 @@ public class DialogManager : MonoBehaviour
 
     private DialogueVariables dialogueVariables;
 
+    public int dialogsPlayed;
+
     private void Awake()
     {
+        dialogsPlayed = 0;
         if (instance == null)
         {
             Debug.LogWarning("Found more than one Dialogue Manager");

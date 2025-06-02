@@ -21,10 +21,13 @@ public class DialogueTriggers : MonoBehaviour
     private int loyaltyMiss;
     private int loyaltyMr;
 
+    private bool talked;
+
     private void Awake()
     {
         playerInRange = false;
         visualCue.SetActive(false);
+        talked = false;
 
     }
     private void Update()
@@ -54,8 +57,9 @@ public class DialogueTriggers : MonoBehaviour
             }
         }
 
-        if (playerInRange && !DialogManager.GetInstance().dialogueIsPlaying)
+        if (playerInRange && !DialogManager.GetInstance().dialogueIsPlaying && talked == false)
         {
+            
 
             visualCue.SetActive(true);
 
@@ -63,6 +67,8 @@ public class DialogueTriggers : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                talked = true;
+                DialogManager.GetInstance().dialogsPlayed += 1;
 
                 if (loyalty < 30)
                 {
