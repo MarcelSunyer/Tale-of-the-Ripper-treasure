@@ -199,6 +199,35 @@ public class PirateShip : MonoBehaviour
         }
     }
 
+    public void KrakenShipExit()
+    {
+        canMove = false;
+        rigidbody.velocity = Vector3.zero;
+
+        // Restaurar control del jugador
+        capitan.MoveSpeed = originalMoveSpeed;
+        capitan.GetComponent<CharacterController>().enabled = true;
+        capitan.transform.SetParent(null);
+
+        // Cambiar cámara al jugador
+        cameraTransition.TransitionCameras(); // <-- Aquí está el cambio clave
+
+        // Reactivar collider del barco
+        shipTriggerCollider.enabled = true;
+
+        // Forzar animación idle
+        Animator captainAnimator = capitan.GetComponent<Animator>();
+        if (captainAnimator != null)
+        {
+            captainAnimator.SetFloat("Speed", 0f);
+        }
+        if (publicCollider != null)
+        {
+            publicCollider.enabled = false;
+            StartCoroutine(ReactivateColliderAfterDelay(4f));
+        }
+    }
+
     private IEnumerator ReactivateColliderAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);

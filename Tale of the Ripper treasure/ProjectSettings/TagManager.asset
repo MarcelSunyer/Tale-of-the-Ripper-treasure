@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - "Tim\xF3n"
   - Boat
+  - ship
   layers:
   - Default
   - TransparentFX
