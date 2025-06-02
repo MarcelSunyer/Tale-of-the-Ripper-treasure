@@ -1108,7 +1108,7 @@ PrefabInstance:
     - target: {fileID: 7944522101892062371, guid: 30c7a0c0c373b364c9ca74bf504801e4, type: 3}
       propertyPath: loadGlobalsJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 5e1eae2686b7c884b816cee834a10a39, type: 3}
+      objectReference: {fileID: 4900000, guid: 9c35aaae9c52f3640826653e8c5dbdd9, type: 3}
     - target: {fileID: 7944522101892062371, guid: 30c7a0c0c373b364c9ca74bf504801e4, type: 3}
       propertyPath: choices.Array.data[0]
       value: 
@@ -1781,15 +1781,15 @@ PrefabInstance:
     - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: inkJSONLow
       value: 
-      objectReference: {fileID: 4900000, guid: c91d496c572c47d409672a10e06fc18f, type: 3}
+      objectReference: {fileID: 4900000, guid: a8eef9a8d784a4b4a91c6470689c3cfc, type: 3}
     - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: inkJSONHigh
       value: 
-      objectReference: {fileID: 4900000, guid: 8018d505caa1264498f6d03ca79fcbfd, type: 3}
+      objectReference: {fileID: 4900000, guid: ccc1289a7d2bee145b6aeeabe77f2fc2, type: 3}
     - target: {fileID: 2407500095420294006, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: inkJSONNeutral
       value: 
-      objectReference: {fileID: 4900000, guid: 5a9b50bfb7df7034cb9eeb0d6bc14d22, type: 3}
+      objectReference: {fileID: 4900000, guid: 70c4d017964e38b4fb14b78aae5f19fb, type: 3}
     - target: {fileID: 2995922805030377342, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
       propertyPath: m_Name
       value: NPCMiss (1)
@@ -1802,10 +1802,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1638400628956993855, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3969501098005209747, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99b0799fb9b64d64e9207675f5a5ea08, type: 3}
 --- !u!1 &1355370188 stripped
 GameObject:
@@ -3014,7 +3011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47738782722c9464086501eba5a49847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Desicion: {fileID: 0}
+  Desicion: {fileID: 4900000, guid: 23f9013728dacbd45972babbae9f4473, type: 3}
   firstMiss: {fileID: 208343608}
   secondMiss: {fileID: 1355370188}
 --- !u!4 &2063302609
