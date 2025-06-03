@@ -240,6 +240,9 @@ public class PirateShip : MonoBehaviour
 
     private void ActivateShipControl()
     {
+        Transform kraken = transform.Find("Kraken");
+        kraken.gameObject.SetActive(false);
+
         cameraTransition.TransitionCameras();
         // Disable ship trigger collider
         shipTriggerCollider.enabled = false;
