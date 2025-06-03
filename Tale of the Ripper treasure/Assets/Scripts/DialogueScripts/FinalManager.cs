@@ -25,9 +25,9 @@ public class FinalManager : MonoBehaviour
     }
     private void Update()
     {
-        loyaltyT = ((IntValue)GetVariableState("Tomasso_Loyalty")).value;
-        loyaltyMiss = ((IntValue)GetVariableState("MissDisfortune_Loyalty")).value;
-        loyaltyMr = ((IntValue)GetVariableState("MrDisfortune_Loyalty")).value;
+        loyaltyT = SaveVariables.GetInstance().lealtadTomasso;
+        loyaltyMiss = SaveVariables.GetInstance().lealtadMiss;
+        loyaltyMr = SaveVariables.GetInstance().lealtadMr;
         finalLoyalty = loyaltyMiss + loyaltyMr + loyaltyT;
         if ( finalLoyalty >= 150)
         {

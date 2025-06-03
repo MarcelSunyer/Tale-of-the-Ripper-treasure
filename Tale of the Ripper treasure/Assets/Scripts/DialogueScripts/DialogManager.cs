@@ -51,6 +51,11 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
+        
+            ((IntValue)GetVariableState("Tomasso_Loyalty")).value = SaveVariables.GetInstance().lealtadTomasso;
+            ((IntValue)GetVariableState("MissDisfortune_Loyalty")).value = SaveVariables.GetInstance().lealtadMiss;
+            ((IntValue)GetVariableState("MrDisfortune_Loyalty")).value = SaveVariables.GetInstance().lealtadMr;
+        
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
@@ -103,10 +108,15 @@ public class DialogManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        
+
     }
 
     private void ContinueStory()
     {
+        SaveVariables.GetInstance().lealtadTomasso = ((IntValue)GetVariableState("Tomasso_Loyalty")).value;
+        SaveVariables.GetInstance().lealtadMiss = ((IntValue)GetVariableState("MissDisfortune_Loyalty")).value;
+        SaveVariables.GetInstance().lealtadMr = ((IntValue)GetVariableState("MrDisfortune_Loyalty")).value;
         if (currentStory.canContinue)
         {
             dialogueText.text = currentStory.Continue();

@@ -33,9 +33,9 @@ public class DialogueTriggers : MonoBehaviour
     }
     private void Update()
     {
-        loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
-        loyaltyMiss = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
-        loyaltyMr = ((IntValue)DialogManager.GetInstance().GetVariableState("MrDisfortune_Loyalty")).value;
+        loyaltyT = SaveVariables.GetInstance().lealtadTomasso;
+        loyaltyMiss = SaveVariables.GetInstance().lealtadMiss;
+        loyaltyMr = SaveVariables.GetInstance().lealtadMr;
         finalLoyalty = loyaltyMiss + loyaltyMr + loyaltyT;
         int loyalty = 0;
         if (playerInRange)
