@@ -57,7 +57,7 @@ public class DialogueTriggers : MonoBehaviour
                     DialogManager.GetInstance().loyaltyText.text = "Mr Loyalty =" + loyaltyMr;
                     break;
                 case "Final":
-                    loyalty = loyaltyMr;
+                    loyalty = finalLoyalty;
                     DialogManager.GetInstance().loyaltyText.text = "Lealtad trip. =" + finalLoyalty;
                     break;
             }
