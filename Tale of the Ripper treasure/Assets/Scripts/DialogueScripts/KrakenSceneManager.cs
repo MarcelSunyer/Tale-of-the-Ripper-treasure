@@ -15,6 +15,8 @@ public class KrakenSceneManager : MonoBehaviour
 
     [SerializeField] private GameObject firstMiss;
     [SerializeField] private GameObject secondMiss;
+    [SerializeField] private GameObject timon;
+    [SerializeField] private GameObject timonBefore;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,8 @@ public class KrakenSceneManager : MonoBehaviour
             firstMiss.SetActive(false);
             decision= true;
             DialogManager.GetInstance().EnterDialogueMode(Desicion);
+            timon.SetActive(true);
+            timonBefore.SetActive(false);
 
         }
         if(decision)
