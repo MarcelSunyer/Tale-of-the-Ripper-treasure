@@ -20,6 +20,7 @@ public class DialogueTriggers : MonoBehaviour
     private int loyaltyT;
     private int loyaltyMiss;
     private int loyaltyMr;
+    private int finalLoyalty;
 
     private bool talked;
 
@@ -35,6 +36,7 @@ public class DialogueTriggers : MonoBehaviour
         loyaltyT = ((IntValue)DialogManager.GetInstance().GetVariableState("Tomasso_Loyalty")).value;
         loyaltyMiss = ((IntValue)DialogManager.GetInstance().GetVariableState("MissDisfortune_Loyalty")).value;
         loyaltyMr = ((IntValue)DialogManager.GetInstance().GetVariableState("MrDisfortune_Loyalty")).value;
+        finalLoyalty = loyaltyMiss + loyaltyMr + loyaltyT;
         int loyalty = 0;
         if (playerInRange)
         {
@@ -53,6 +55,10 @@ public class DialogueTriggers : MonoBehaviour
                 case "Mr":
                     loyalty = loyaltyMr;
                     DialogManager.GetInstance().loyaltyText.text = "Mr Loyalty =" + loyaltyMr;
+                    break;
+                case "Final":
+                    loyalty = loyaltyMr;
+                    DialogManager.GetInstance().loyaltyText.text = "Lealtad trip. =" + finalLoyalty;
                     break;
             }
         }
