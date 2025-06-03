@@ -75,6 +75,17 @@ public class DialogueTriggers : MonoBehaviour
             {
                 talked = true;
                 DialogManager.GetInstance().dialogsPlayed += 1;
+                if(npcName == "Final")
+                {
+                    if (loyalty < 150)
+                    {
+                        DialogManager.GetInstance().EnterDialogueMode(inkJSONLow);
+                    }
+                    else
+                    {
+                        DialogManager.GetInstance().EnterDialogueMode(inkJSONHigh);
+                    }
+                }
 
                 if (loyalty < 30)
                 {

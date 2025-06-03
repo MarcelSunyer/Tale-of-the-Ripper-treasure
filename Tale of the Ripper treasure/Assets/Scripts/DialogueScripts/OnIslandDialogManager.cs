@@ -13,7 +13,7 @@ public class OnIslandDialogManager : MonoBehaviour
     {
 
         dialogsPlayedK = DialogManager.GetInstance().dialogsPlayed;
-        if (dialogsPlayedK == 1  && !DialogManager.GetInstance().dialogueIsPlaying)
+        if (dialogsPlayedK >= 1  && !DialogManager.GetInstance().dialogueIsPlaying)
         {
             SceneManager.LoadScene("EndScene");
 

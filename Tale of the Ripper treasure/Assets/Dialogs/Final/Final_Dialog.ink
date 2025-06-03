@@ -1,4 +1,4 @@
-INCLUDE ../Globals2.ink
+
 -> main
 === main ===
 Miss Disfortune: Capitan, hemos encontrado el tesoro!! Vamos a pasar a la Historia!!

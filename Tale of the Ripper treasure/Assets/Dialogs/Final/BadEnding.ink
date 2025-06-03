@@ -1,4 +1,4 @@
-INCLUDE ../Globals2.ink
+
 -> main
 === main ===
 Pico Pata Palo: Por fin hemos encontrdo el tesoro, ahora vamos a pasar a la historia.
