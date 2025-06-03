@@ -2876,6 +2876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd1f63d16c167f4688217eff90b706a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogAfterColliion: {fileID: 4900000, guid: 8db4fb2830f8a354894ade6659e557cf, type: 3}
 --- !u!1 &1563952741
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,7 +3604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014987229304947280, guid: 12c5aef592b9ee447aefe472e0404889, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 145.5
+      value: 221.6
       objectReference: {fileID: 0}
     - target: {fileID: 8014987229304947280, guid: 12c5aef592b9ee447aefe472e0404889, type: 3}
       propertyPath: m_LocalRotation.w

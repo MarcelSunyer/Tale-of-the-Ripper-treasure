@@ -31,7 +31,7 @@ public class ArrowLookAt : MonoBehaviour
             Vector3 direction = targetPointKraken.transform.position - transform.position;
 
             // Si la dirección no es cero, rota la flecha hacia ese punto
-            if (-direction != Vector3.zero)
+            if (direction != Vector3.zero)
             {
                 Quaternion lookRotation = Quaternion.LookRotation(new Vector3(-direction.x, direction.y, direction.z));
                 transform.rotation = lookRotation;

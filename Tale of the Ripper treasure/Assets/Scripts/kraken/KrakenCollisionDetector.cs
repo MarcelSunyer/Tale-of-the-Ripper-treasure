@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class KrakenCollisionDetector : MonoBehaviour
 {
+    [SerializeField] private TextAsset dialogAfterColliion;
+
     void Start()
     {
         
@@ -25,6 +27,7 @@ public class KrakenCollisionDetector : MonoBehaviour
 
             Transform kraken = other.transform.Find("Kraken");
             kraken.gameObject.SetActive(true);
+            DialogManager.GetInstance().EnterDialogueMode(dialogAfterColliion);
         }
     }
 }

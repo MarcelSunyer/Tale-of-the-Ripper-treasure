@@ -48,6 +48,11 @@ public class KrakenSceneManager : MonoBehaviour
             {
                 secondMiss.SetActive(true);
             }
+            else
+            {
+               timon.GetComponent<BoxCollider>().enabled = true;
+            }
+
         }
     }
 }
