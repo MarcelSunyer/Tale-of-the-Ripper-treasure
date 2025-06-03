@@ -685,6 +685,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5295525979966291191, guid: c1e231173a858614085ca7e0602860eb, type: 3}
+      propertyPath: _mainCamera
+      value: 
+      objectReference: {fileID: 1118448275}
     - target: {fileID: 6454424605621111852, guid: c1e231173a858614085ca7e0602860eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.020000458
@@ -2221,6 +2225,11 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4916744495959837594, guid: 6261867b55f8e254c937f6fc47a04d5f, type: 3}
   m_PrefabInstance: {fileID: 1097847890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1118448275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 581462157206275582, guid: c1e231173a858614085ca7e0602860eb, type: 3}
+  m_PrefabInstance: {fileID: 194972939}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1134466723
 GameObject:
